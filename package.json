@@ -1,0 +1,19 @@
+{
+  "name": "invariant.js",
+  "version": "0.0.0",
+  "description": "Library for testing things you expect to always be satisfied",
+  "main": "invariant.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "invariant",
+    "testing"
+  ],
+  "author": "Andrej T.",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "expect": "~1.1.0",
+    "colors": "~1.0.3"
+  }
+}

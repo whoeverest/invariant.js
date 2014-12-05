@@ -1,4 +1,5 @@
 /* Library for testing things you expect to always be satisfied */
+var colors = require('colors');
 
 function inv(description, f) {
     return function() {
@@ -8,8 +9,15 @@ function inv(description, f) {
         } catch (e) {
             pass = false;
         }
-        if (result) {
-            return result === true;
+
+        if (!pass || result === false) {
+            console.error(colors.red('Invariant "' + description + '" failed'));
+        }
+
+        if (result === true) {
+            return true;
+        } else if (result === false) {
+            return false;
         } else {
             return pass;
         }
@@ -24,7 +32,18 @@ var all = function(invariants) {
     };
 };
 
+var when = function(condition, invariants) {
+    return function() {
+        if (condition()) {
+            return invariants();
+        } else {
+            return true;
+        }
+    };
+};
+
 module.exports = {
     inv: inv,
-    all: all
+    all: all,
+    when: when
 };

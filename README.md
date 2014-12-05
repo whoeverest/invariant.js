@@ -1,3 +1,8 @@
+## Invariant.js
+
+Example:
+
+```javascript
 var test = require('./invariant.js');
 
 var person = {
@@ -37,3 +42,4 @@ var minorInvariants = test.when(isMinor, test.all([mustNotDrive, mustNotDrink]))
 var tests = test.all([idIsPositive, nameLength, surnameNoNumbers, minorInvariants]);
 
 console.log(tests());
+```
