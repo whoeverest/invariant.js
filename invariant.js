@@ -11,7 +11,7 @@ function inv(description, f) {
         }
 
         if (!pass || result === false) {
-            console.error(colors.red('Invariant "' + description + '" failed'));
+            console.error(colors.red('Invariant "' + description + '" not satisfied'));
         }
 
         if (result === true) {
