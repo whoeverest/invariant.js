@@ -5,16 +5,7 @@ Example:
 ```javascript
 var test = require('./invariant.js');
 
-var person = {
-    name: 'Andrej',
-    surname: 'Trajchevski',
-    id: -2,
-    age: 17,
-    hasDriversLicence: true,
-    canDrink: false
-};
-
-function invGen(person) {
+function genPersonTests(person) {
     var nameLength = test.inv('name has low length', function() {
         return person.name.length < 16;
     });
@@ -45,7 +36,24 @@ function invGen(person) {
     return tests;
 }
 
-var personTests = invGen(person);
+var person = {
+    name: 'Andrej',
+    surname: 'Trajchevski',
+    id: -2,
+    age: 17,
+    hasDriversLicence: true,
+    canDrink: false
+};
+
+var personTests = genPersonTests(person);
 
 console.log(personTests());
+```
+
+Prints:
+
+```
+Invariant "id is positive" not satisfied
+Invariant "must not drive" not satisfied
+false
 ```
