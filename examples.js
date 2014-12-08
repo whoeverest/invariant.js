@@ -17,15 +17,15 @@ function genPersonTests(person) {
         return person.id > 0;
     });
 
-    var mustNotDrink = test.inv('must not drink', function() {
-        return person.canDrink === false;
-    });
+    var minorInvariants = test.when(isMinor, test.all({
+        mustNotDrink: test.inv('must not drink', function() {
+            return person.canDrink === false;
+        }),
+        mustNotDrive: test.inv('must not drive', function() {
+            return person.hasDriversLicence === false;
+        })
+    }));
 
-    var mustNotDrive = test.inv('must not drive', function() {
-        return person.hasDriversLicence === false;
-    });
-
-    var minorInvariants = test.when(isMinor, test.all([mustNotDrive, mustNotDrink]));
     var tests = test.all([idIsPositive, nameLength, surnameNoNumbers, minorInvariants]);
 
     return tests;

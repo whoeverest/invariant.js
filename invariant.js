@@ -4,17 +4,17 @@ var colors = require('colors');
 var helpers = {
     type: function(obj) {
         var type = Object.prototype.toString.call(obj);
-        if (type === '[object Array]') {
-            return 'Array';
-        } else if (type === '[object Object]') {
-            return 'Object';
-        } else {
-            throw new Error('Unknown type: {{type}}'.replace('{{type}}', type));
-        }
+        return type.split(' ')[1].replace(']', '');
     }
 };
 
 function inv(description, f) {
+    if (helpers.type(description) !== 'String') {
+        throw new Error('Missing invariant description');
+    }
+    if (helpers.type(f) !== 'Function') {
+        throw new Error('Missing invariant function');
+    }
     return function() {
         var result, pass = true;
         try {
